@@ -34,6 +34,13 @@ public class AnswerGenerator {
         answer = result.toString();
     }
 
+    public String generateAnswerBy(int ball){
+        answerList = new ArrayList<>();
+        makeNumber(ball);
+
+        return getAnswer();
+    }
+
     public String getAnswer() {
         return answer;
     }
