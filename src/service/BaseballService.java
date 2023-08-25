@@ -8,4 +8,9 @@ public class BaseballService {
     public void generateAnswerBy(int ballSize) {
         answerGenerate.generateAnswerBy(ballSize);
     }
+
+    public boolean matchNumber(String userNumber) {
+        // 시버스 동작
+        return true;
+    }
 }
