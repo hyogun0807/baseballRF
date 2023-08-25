@@ -1,4 +1,7 @@
 import controller.BaseballGameController;
+import service.BaseballService;
+import view.OutputView;
+import view.input.ScannerInput;
 
 
 /**
@@ -7,7 +10,15 @@ import controller.BaseballGameController;
 public class BaseballApplication {
 
     public static void main(String[] args) {
-        BaseballGame baseballGame = new BaseballGame();
-        baseballGame.run();
+        BaseballService baseballService = new BaseballService();
+        BaseballGameController baseballGameController = new BaseballGameController(baseballService);
+
+        OutputView outputView = new OutputView();
+
+//        BaseballGame baseballGame1 = new BaseballGame(baseballGameController, outputView, new ConsoleInput());
+//        BaseballGame baseballGame2 = new BaseballGame(baseballGameController, outputView, new FileInput());
+        BaseballGame baseballGame3 = new BaseballGame(baseballGameController, outputView, new ScannerInput());
+
+        baseballGame3.run();
     }
 }

@@ -1,5 +1,8 @@
 import controller.BaseballGameController;
+import service.BaseballService;
 import view.InGameText;
+import view.OutputView;
+import view.input.InputView;
 
 /**
  * BaseballGame : 게임 동작
@@ -9,8 +12,18 @@ import view.InGameText;
  */
 public class BaseballGame {
 
+    private BaseballGameController baseballController;
+    private OutputView outputView;
+
+    private InputView inputView;
+
+    public BaseballGame(BaseballGameController baseballController, OutputView outputView, InputView inputView) {
+        this.baseballController = baseballController;
+        this.outputView = outputView;
+        this.inputView = inputView;
+    }
+
     public void run() {
-        BaseballGameController baseballController = new BaseballGameController();
         boolean coin = true;
 
         /**
@@ -35,8 +48,13 @@ public class BaseballGame {
 
    private void startGame() {
        // 사용자의 input을 받는거지?
-       ㄴㅅ
+       String userNumber = readUserNUmber();
+       boolean result = baseballController.matchNumber(userNumber);
    }
+
+   private String readBaseballSize() {
+   }
+
     private void gameContinue() {
         getBall();
         makeAnswer();
