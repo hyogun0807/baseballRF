@@ -1,4 +1,5 @@
 package view.input;
 
-public class ScannerInput implements InputView{
+public class ScannerInput implements InputView {
 }
+
