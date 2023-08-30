@@ -1,11 +1,10 @@
 package service;
 
 import model.AnswerGenerator;
-import model.StrikeBallCounter;
-
-public class BaseballService {
+import model.StrikeBallCounter;public class BaseballService {
     AnswerGenerator answerGenerate = new AnswerGenerator();
     StrikeBallCounter strikeBallCounter = new StrikeBallCounter();
+
     private String answer;
     private String userInput;
     private int strike;
@@ -40,4 +39,6 @@ public class BaseballService {
     public void initBallCount() {
         strikeBallCounter.initBallCount();
     }
+
+
 }

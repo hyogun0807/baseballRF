@@ -1,6 +1,4 @@
 import controller.BaseballGameController;
-import model.InputValidator;
-import service.BaseballService;
 import view.*;
 import view.input.InputView;
 
@@ -14,15 +12,14 @@ public class BaseballGame {
 
     private BaseballGameController baseballController;
     private OutputView outputView;
+
     private InputView inputView;
 
-    private String userNumber;
     private int ballSize;
     private int strike;
     private int ball;
     private int nothing;
-
-
+    
     public BaseballGame(BaseballGameController baseballController, OutputView outputView, InputView inputView) {
         this.baseballController = baseballController;
         this.outputView = outputView;
@@ -33,8 +30,12 @@ public class BaseballGame {
         boolean gameCoin = true;
         while (gameCoin) {
             boolean notOut = true;
+
+            // 랜덤값 생성
             inputBallSize();
             generateAnswer();
+
+
             playBaseBallGame(notOut);
 
             readCoin();
@@ -45,10 +46,10 @@ public class BaseballGame {
     private void playBaseBallGame(boolean notOut) {
         while (notOut) {
             initGameCondition();
-            inputUserNumber();
+            String userNumber = readUserNumber();
             // 숫자를 입력하세요 : 1234
 
-            countStrikeAndBall();
+            countStrikeAndBall(userNumber);
             // 볼카운트 세기
             showBallCount();
             gameEndTextView();
@@ -63,16 +64,64 @@ public class BaseballGame {
         baseballController.answerGenerator(ballSize);
     }
 
-    private void inputUserNumber() {
-        userNumber = baseballController.userNumber();
-        validateUserInput();
+    private String readUserNumber() {
+        String userNumber = baseballController.userNumber();
+        validateUserInput(userNumber);
+//
+//        Number2 number = new Number2(randomGenerate);
+//        Number2 UserInput = new Number2(userInput);
+//       boolean a = number.match(userInput);
+//
+        return userNumber;
     }
 
-    private void validateUserInput() {
+    /**
+     *  DTO는 데이터를 전송하기 위한 목적을 가지고 있다.
+     *   - 데이터가 변경X
+     *   - setter가 있으면 안된다.
+     */
+//    public static class NumberDto {
+//        private int number;
+//
+//        public NumberDto(int number ) {
+//            this.number = number;
+//        }
+//
+//        public int getNumber() {
+//            return number;
+//        }
+//    }
+
+//    public static class Number2 {
+//        private String number;
+//
+//        public Number2(String number) {
+//            validate(number);
+//            this.number = number;
+//        }
+//
+//        /**
+//         * 생성자에서 생성만 할 수 있어
+//         *
+//         * 객체 생성을 new가 아닌 의미있는 다른 메서드 명으로 할 수 있다.
+//         * @param number
+//         * @return
+//         */
+//        public static Number2 from(String number) {
+//            validate(number);
+//            return new Number2(number);
+//        }
+//
+//        public boolean match(Number2 newNumber) {
+//            return this.number.equals(newNumber.number);
+//        }
+//    }
+
+    private void validateUserInput(String userNumber) {
         baseballController.errorCheck(userNumber);
     }
 
-    private void countStrikeAndBall() {
+    private void countStrikeAndBall(String userNumber) {
         baseballController.ballCount(userNumber);
     }
 
